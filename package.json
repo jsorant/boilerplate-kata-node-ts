@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "proprietary",
   "devDependencies": {
+    "@cucumber/cucumber": "^9.1.0",
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
     "@types/node": "^14.0.27",
@@ -17,6 +18,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
     "test:coverage": "nyc npm run test",
+    "test:bdd": "cucumber-js",
     "build": "tsc"
   }
 }
