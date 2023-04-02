@@ -18,6 +18,8 @@ Just hit F5 to run tests. Launch command specified in `.vscode/launch.json`.
 npm test
 ```
 
-## Start with a kata
+## Code coverage
 
-Tests entrypoint is `src/test.spec.ts`.
+```
+npm run test:coverage
+```
