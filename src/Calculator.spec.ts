@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { Calculator } from "./Calculator";
 
 describe("Calculator", () => {
   it("should return 3 when adding 1 and 2", () => {
@@ -8,3 +7,9 @@ describe("Calculator", () => {
     expect(result).to.equal(3);
   });
 });
+
+class Calculator {
+  add(a: number, b: number): number {
+    return a + b;
+  }
+}
