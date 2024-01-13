@@ -24,5 +24,8 @@
     "test:coverage": "nyc npm run test",
     "test:bdd": "cucumber-js",
     "build": "tsc"
+  },
+  "dependencies": {
+    "js-big-decimal": "^2.0.4"
   }
 }
