@@ -1,15 +1,9 @@
-import { expect } from "chai";
+import { expect, test } from "vitest";
 
-describe("Calculator", () => {
-  it("should return 3 when adding 1 and 2", () => {
-    const calculator = new Calculator();
-    const result = calculator.add(1, 2);
-    expect(result).to.equal(3);
-  });
+test("adds 1 + 2 to equal 3", () => {
+  expect(sum(1, 2)).toBe(3);
 });
 
-class Calculator {
-  add(a: number, b: number): number {
-    return a + b;
-  }
+function sum(a: number, b: number): number {
+  return a + b;
 }
