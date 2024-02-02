@@ -8,20 +8,16 @@ npm install
 
 ## Run tests
 
-### VSCode
-
-Just hit F5 to run tests. Launch command specified in `.vscode/launch.json`.
-
-### Using a terminal
+### With watch mode and Vitest UI
 
 ```
 npm test
 ```
 
-### Code coverage
+### Without watch mode
 
 ```
-npm run test:coverage
+npm run test -- --run
 ```
 
 ## Run tests with BDD style (Cucumber)
