@@ -8,7 +8,7 @@ npm install
 
 ## Run tests
 
-### With watch mode and Vitest UI
+### With watch mode, coverage and Vitest UI
 
 ```
 npm test
