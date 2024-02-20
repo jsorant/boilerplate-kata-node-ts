@@ -1,27 +1,18 @@
-import {expect, test, describe} from "vitest";
+import {expect, test, describe, beforeEach, Mock} from "vitest";
+import {mock} from "vitest-mock-extended";
 import {AddContact} from "../../../src/domain/usecase/AddContact";
 import {Contact} from "../../../src/domain/entities/Contact";
 import {ContactsRepository} from "../../../src/domain/ports/ContactsRepository";
 
-class FakeRepository implements ContactsRepository {
-
-    public called = false;
-    public contact: Contact | undefined = undefined;
-
-    async add(contact: Contact): Promise<void> {
-        this.called = true;
-        this.contact = contact;
-    }
-
-    async list(): Promise<Contact[]> {
-        return [];
-    }
-}
-
 describe("AddContact", () => {
+    let repository: any;
+
+    beforeEach(() => {
+        repository = mock<ContactsRepository>();
+    })
+
     test("should add a contact", async () => {
-        const fakeRepository = new FakeRepository();
-        const usecase = new AddContact(fakeRepository);
+        const usecase = new AddContact(repository);
 
         const inputs = {
             name: "Alice",
@@ -30,8 +21,7 @@ describe("AddContact", () => {
 
         await usecase.execute(inputs);
 
-        expect(fakeRepository.called).toBeTruthy();
-        expect(fakeRepository.contact?.name).toStrictEqual("Alice");
-        expect(fakeRepository.contact?.phone).toStrictEqual("0102030405");
+        expect(repository.add).toHaveBeenCalledOnce();
+        expect(repository.add).toHaveBeenCalledWith(new Contact("Alice", "0102030405"));
     });
 });
