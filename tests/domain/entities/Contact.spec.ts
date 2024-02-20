@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { Contact } from "../../src/domain/Contact";
+import { Contact } from "../../../src/domain/entities/Contact";
 
 describe("Contact", () => {
   test("should not create without a name", () => {
