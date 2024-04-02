@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c3a9ca8-3700-46a1-b6bd-04ac2c64aef0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gilded-rose.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/gilded-rose.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/golden-master-text-test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/golden-gilded-rose.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/item.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gilded-rose.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/gilded-rose.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/gilded-rose.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/gilded-rose.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +37,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "gilded-rose-start",
     "last_opened_file_path": "C:/Users/jsora/WebstormProjects/boilerplate-kata-node-ts/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",

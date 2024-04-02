@@ -1,6 +1,6 @@
 import {Item} from "./item";
 
-export class GildedRose {
+export class GoldenGildedRose {
     items: Array<Item>;
 
     constructor(items = [] as Array<Item>) {
