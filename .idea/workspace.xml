@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c3a9ca8-3700-46a1-b6bd-04ac2c64aef0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/golden-gilded-rose.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/aged.brie.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/backstagePass.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/conjured.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/item.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/items/sulfura.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gilded-rose.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/gilded-rose.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/golden-gilded-rose.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/golden-gilded-rose.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/item.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test/gilded-rose.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/gilded-rose.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/golden-master-text-test.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +43,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "gilded-rose-start",
+    "git-widget-placeholder": "gilded-rose-with-tests",
     "last_opened_file_path": "C:/Users/jsora/WebstormProjects/boilerplate-kata-node-ts/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -56,11 +62,11 @@
       <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\test" />
+      <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\src\items" />
       <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\src" />
+      <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\test" />
       <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\src\primary" />
       <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\tests\primary" />
-      <recent name="C:\Users\jsora\WebstormProjects\boilerplate-kata-node-ts\src\secondary" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

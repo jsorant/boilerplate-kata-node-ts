@@ -1,25 +1,28 @@
 import {describe, expect, test} from "vitest";
 import {GildedRose} from "../src/gilded-rose";
 import {GoldenGildedRose} from "../src/golden-gilded-rose";
-import {Item} from "../src/item";
+import {Item} from "../src/items/item";
+import {AgedBrie} from "../src/items/aged.brie";
+import {Sulfura} from "../src/items/sulfura";
+import {BackstagePass} from "../src/items/backstagePass";
+import {Conjured} from "../src/items/conjured";
+
 
 function makeItems() {
     return [
         new Item("+5 Dexterity Vest", 10, 20), //
-        new Item("Aged Brie", 2, 0), //
+        new AgedBrie("Aged Brie", 2, 0), //
         new Item("Elixir of the Mongoose", 5, 7), //
-        new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-        new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-        new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-        // this conjured item does not work properly yet
-        //new Item("Conjured Mana Cake", 3, 6)
+        new Sulfura("Sulfuras, Hand of Ragnaros", 0, 80), //
+        new Sulfura("Sulfuras, Hand of Ragnaros", -1, 80),
+        new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+        new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+        new BackstagePass("Backstage passes to a TAFKAL80ETC concert", 5, 49),
     ];
 }
 
 describe('Gilded Rose', () => {
-    test('should foo', () => {
+    test('should match golden master', () => {
         const gildedRose = new GildedRose(makeItems());
         const goldenGildedRose = new GoldenGildedRose(makeItems());
 
@@ -30,4 +33,23 @@ describe('Gilded Rose', () => {
             expect(goldenGildedRose.items).toStrictEqual(gildedRose.items);
         }
     });
+
+    test("should handle conjured items", () => {
+        const conjuredItem = new Conjured("Conjured Mana Cake", 2, 12);
+
+        conjuredItem.update();
+
+        expect(conjuredItem.quality).toBe(10)
+        expect(conjuredItem.sellIn).toBe(1)
+
+        conjuredItem.update();
+
+        expect(conjuredItem.quality).toBe(8)
+        expect(conjuredItem.sellIn).toBe(0)
+
+        conjuredItem.update();
+
+        expect(conjuredItem.quality).toBe(4)
+        expect(conjuredItem.sellIn).toBe(-1)
+    })
 });
