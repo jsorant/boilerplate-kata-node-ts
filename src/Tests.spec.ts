@@ -1,24 +1,5 @@
-import {expect, it, describe} from "vitest";
-
-function fitWall(wallWidth: number, elements: number[]) {
-    if (elements.length === 0) return [];
-
-    const result: string[] = [];
-
-    for (const element of elements) {
-        let remainingWallWidth = wallWidth;
-        let combination = "";
-
-        while (remainingWallWidth >= element) {
-            combination += `${element};`;
-            remainingWallWidth -= element;
-        }
-
-        if (combination.length > 0 && remainingWallWidth === 0) result.push(combination);
-    }
-
-    return result;
-}
+import {describe, expect, it} from "vitest";
+import {fitWall} from "./FitWall";
 
 describe("Ward Robe", () => {
     const testCases = [
@@ -30,12 +11,17 @@ describe("Ward Robe", () => {
         {wallWidth: 120, elements: [50], expected: []},
         {wallWidth: 100, elements: [100], expected: ["100;"]},
         {wallWidth: 100, elements: [50, 100], expected: ["50;50;", "100;"]},
-        {wallWidth: 150, elements: [50, 100], expected: ["50;50;50;", "100;50;"]},
+        {wallWidth: 150, elements: [50, 100], expected: ["50;50;50;", "50;100;"]},
+        {
+            wallWidth: 250,
+            elements: [50, 75, 100, 120],
+            expected: ["50;50;50;50;50;", "50;50;50;100;", "50;100;100;", "75;75;100;", "50;50;75;75;"]
+        },
     ]
 
     testCases.forEach(testCase => {
         it(`should fit a wall of ${testCase.wallWidth} with elements: ${testCase.elements}`, () => {
-            expect(fitWall(testCase.wallWidth, testCase.elements)).toEqual(testCase.expected);
+            expect(fitWall(testCase.wallWidth, testCase.elements).sort()).toEqual(testCase.expected.sort());
         });
     })
 });
