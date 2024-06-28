@@ -1,7 +1,55 @@
-import {expect, it, describe} from "vitest";
+import {describe, expect, it} from "vitest";
+import {HandValue, Result, RockPaperScissor} from "./RockPaperScissor";
 
-describe("Calculator", () => {
-    it("adding 1 and 2 should equal 3", () => {
-        expect(1 + 2).toBe(3);
+describe("Rock Paper Scissor", () => {
+    it("player 1 should win", () => {
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.ROCK)
+            .withPlayerTwoHand(HandValue.SCISSORS)
+            .act()).toBe(Result.PLAYER_ONE_WON);
+
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.SCISSORS)
+            .withPlayerTwoHand(HandValue.PAPER)
+            .act()).toBe(Result.PLAYER_ONE_WON);
+
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.PAPER)
+            .withPlayerTwoHand(HandValue.ROCK)
+            .act()).toBe(Result.PLAYER_ONE_WON);
+    });
+
+    it("player 2 should win", () => {
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.SCISSORS)
+            .withPlayerTwoHand(HandValue.ROCK)
+            .act()).toBe(Result.PLAYER_TWO_WON);
+
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.PAPER)
+            .withPlayerTwoHand(HandValue.SCISSORS)
+            .act()).toBe(Result.PLAYER_TWO_WON);
+
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.ROCK)
+            .withPlayerTwoHand(HandValue.PAPER)
+            .act()).toBe(Result.PLAYER_TWO_WON);
+    });
+
+    it("should be a draw", () => {
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.SCISSORS)
+            .withPlayerTwoHand(HandValue.SCISSORS)
+            .act()).toBe(Result.DRAW);
+
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.PAPER)
+            .withPlayerTwoHand(HandValue.PAPER)
+            .act()).toBe(Result.DRAW);
+
+        expect(RockPaperScissor
+            .withPlayerOneHand(HandValue.ROCK)
+            .withPlayerTwoHand(HandValue.ROCK)
+            .act()).toBe(Result.DRAW);
     });
 });
