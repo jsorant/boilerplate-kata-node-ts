@@ -14,7 +14,7 @@
     "vitest-mock-extended": "^1.3.1"
   },
   "scripts": {
-    "test": "vitest --ui",
+    "test": "vitest --ui --api 9527",
     "test:bdd": "cucumber-js"
   }
 }
