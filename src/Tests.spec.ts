@@ -1,55 +1,53 @@
 import {describe, expect, it} from "vitest";
-import {HandValue, Result, RockPaperScissor} from "./RockPaperScissor";
+import {HandValue, RockPaperScissor, RockPaperScissorResult} from "./RockPaperScissor";
 
 describe("Rock Paper Scissor", () => {
-    it("player 1 should win", () => {
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.ROCK)
-            .withPlayerTwoHand(HandValue.SCISSORS)
-            .act()).toBe(Result.PLAYER_ONE_WON);
+    describe("Player one should win", () => {
+        const testCases = [
+            {playerOneHand: HandValue.ROCK, playerTwoHand: HandValue.SCISSORS},
+            {playerOneHand: HandValue.SCISSORS, playerTwoHand: HandValue.PAPER},
+            {playerOneHand: HandValue.PAPER, playerTwoHand: HandValue.ROCK}
+        ];
 
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.SCISSORS)
-            .withPlayerTwoHand(HandValue.PAPER)
-            .act()).toBe(Result.PLAYER_ONE_WON);
+        testCases.forEach(testCase => {
+            it(`when player one hand is ${testCase.playerOneHand} and player two hand is ${testCase.playerTwoHand}`, () => {
+                expect(RockPaperScissor.withHands({
+                    playerOneHand: testCase.playerOneHand,
+                    playerTwoHand: testCase.playerTwoHand
+                }).act()).toBe(RockPaperScissorResult.PLAYER_ONE_WON);
+            });
+        })
+    })
 
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.PAPER)
-            .withPlayerTwoHand(HandValue.ROCK)
-            .act()).toBe(Result.PLAYER_ONE_WON);
-    });
+    describe("Player two should win", () => {
+        const testCases = [
+            {playerOneHand: HandValue.SCISSORS, playerTwoHand: HandValue.ROCK},
+            {playerOneHand: HandValue.PAPER, playerTwoHand: HandValue.SCISSORS},
+            {playerOneHand: HandValue.ROCK, playerTwoHand: HandValue.PAPER}
+        ];
 
-    it("player 2 should win", () => {
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.SCISSORS)
-            .withPlayerTwoHand(HandValue.ROCK)
-            .act()).toBe(Result.PLAYER_TWO_WON);
+        testCases.forEach(testCase => {
+            it(`when player one hand is ${testCase.playerOneHand} and player two hand is ${testCase.playerTwoHand}`, () => {
+                expect(RockPaperScissor.withHands({
+                    playerOneHand: testCase.playerOneHand,
+                    playerTwoHand: testCase.playerTwoHand
+                }).act()).toBe(RockPaperScissorResult.PLAYER_TWO_WON);
+            });
+        })
+    })
 
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.PAPER)
-            .withPlayerTwoHand(HandValue.SCISSORS)
-            .act()).toBe(Result.PLAYER_TWO_WON);
+    describe("Game should be a draw", () => {
+        const hands = [
+            HandValue.SCISSORS, HandValue.ROCK, HandValue.PAPER
+        ];
 
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.ROCK)
-            .withPlayerTwoHand(HandValue.PAPER)
-            .act()).toBe(Result.PLAYER_TWO_WON);
-    });
-
-    it("should be a draw", () => {
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.SCISSORS)
-            .withPlayerTwoHand(HandValue.SCISSORS)
-            .act()).toBe(Result.DRAW);
-
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.PAPER)
-            .withPlayerTwoHand(HandValue.PAPER)
-            .act()).toBe(Result.DRAW);
-
-        expect(RockPaperScissor
-            .withPlayerOneHand(HandValue.ROCK)
-            .withPlayerTwoHand(HandValue.ROCK)
-            .act()).toBe(Result.DRAW);
-    });
+        hands.forEach(hand => {
+            it(`when player one hand is ${hand} and player two hand is ${hand}`, () => {
+                expect(RockPaperScissor.withHands({
+                    playerOneHand: hand,
+                    playerTwoHand: hand
+                }).act()).toBe(RockPaperScissorResult.DRAW);
+            });
+        })
+    })
 });

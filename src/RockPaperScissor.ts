@@ -1,4 +1,9 @@
-export enum Result {
+interface RockPaperScissorInput {
+    playerOneHand: HandValue;
+    playerTwoHand: HandValue;
+}
+
+export enum RockPaperScissorResult {
     PLAYER_ONE_WON = "PLAYER_ONE_WON",
     PLAYER_TWO_WON = "PLAYER_TWO_WON",
     DRAW = "DRAW",
@@ -11,30 +16,22 @@ export enum HandValue {
 }
 
 export class RockPaperScissor {
-    constructor(private readonly playerOneHand: Hand,
-                private readonly playerTwoHand: Hand) {
-    }
-
-    static withPlayerOneHand(value: HandValue) {
-        return new RockPaperScissorBuilder(Hand.of(value));
-    }
-
-    act() {
-        if (this.playerOneHand.equals(this.playerTwoHand)) return Result.DRAW;
-        if (this.playerOneHand.beats(this.playerTwoHand)) return Result.PLAYER_ONE_WON;
-        return Result.PLAYER_TWO_WON;
-    }
-}
-
-export class RockPaperScissorBuilder {
     private readonly playerOneHand: Hand;
+    private readonly playerTwoHand: Hand;
 
-    constructor(playerOneHand: Hand) {
-        this.playerOneHand = playerOneHand;
+    private constructor(input: RockPaperScissorInput) {
+        this.playerOneHand = Hand.of(input.playerOneHand);
+        this.playerTwoHand = Hand.of(input.playerTwoHand);
     }
 
-    withPlayerTwoHand(playerTwoHandValue: HandValue): RockPaperScissor {
-        return new RockPaperScissor(this.playerOneHand, Hand.of(playerTwoHandValue));
+    static withHands(input: RockPaperScissorInput): RockPaperScissor {
+        return new RockPaperScissor(input);
+    }
+
+    act(): RockPaperScissorResult {
+        if (this.playerOneHand.equals(this.playerTwoHand)) return RockPaperScissorResult.DRAW;
+        if (this.playerOneHand.beats(this.playerTwoHand)) return RockPaperScissorResult.PLAYER_ONE_WON;
+        return RockPaperScissorResult.PLAYER_TWO_WON;
     }
 }
 
