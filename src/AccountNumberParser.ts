@@ -36,23 +36,10 @@ export class AccountNumberParser {
     private static parseAccountNumber(lines: string[]) {
         let accountNumberValue = "";
         for (let digitIndex = 0; digitIndex < DIGITS_COUNT; digitIndex++) {
-            accountNumberValue += this.parseAccountNumberDigit(digitIndex, lines);
+            const digitLines = this.digitsLines(lines).map(l => l.slice(digitIndex * DIGIT_WIDTH, (digitIndex + 1) * DIGIT_WIDTH));
+            accountNumberValue += DigitParser.toNumber(digitLines)
         }
         return AccountNumber.of(accountNumberValue);
-    }
-
-    private static parseAccountNumberDigit(digitIndex: number, lines: string[]) {
-        const digit = this.extractDigit(digitIndex, lines);
-        return DigitParser.toNumber(digit);
-    }
-
-    private static extractDigit(digitIndex: number, lines: string[]) {
-        const digit: string[] = [];
-        this.digitsLines(lines).forEach(line => {
-            const digitPart = line.substring(digitIndex * DIGIT_WIDTH, digitIndex * DIGIT_WIDTH + DIGIT_WIDTH);
-            digit.push(digitPart);
-        })
-        return digit;
     }
 
     private static digitsLines(lines: string[]) {
