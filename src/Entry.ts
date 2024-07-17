@@ -7,17 +7,21 @@ const DIGITS_COUNT = 9;
 const DIGIT_WIDTH = 3;
 
 export class Entry {
-    constructor(private readonly lines: string[]) {
+    private constructor(private readonly lines: string[]) {
         this.verifyLinesCount();
         this.verifyDigitLinesLength();
         this.verifyLastLineLength();
     }
 
+    static of(entryLines: string[]) {
+        return new Entry(entryLines);
+    }
+
     toAccountNumber() {
         let accountNumberValue = "";
         for (let digitIndex = 0; digitIndex < DIGITS_COUNT; digitIndex++) {
-            const digitLines = this.digitsLines().map(l => l.slice(digitIndex * DIGIT_WIDTH, (digitIndex + 1) * DIGIT_WIDTH));
-            accountNumberValue += DigitParser.toNumber(digitLines)
+            const digitsLines = this.digitsLines().map(l => l.slice(digitIndex * DIGIT_WIDTH, (digitIndex + 1) * DIGIT_WIDTH));
+            accountNumberValue += DigitParser.toNumber(digitsLines)
         }
 
         return AccountNumber.of(accountNumberValue);

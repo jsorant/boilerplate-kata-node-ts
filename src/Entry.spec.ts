@@ -1,9 +1,9 @@
 import {describe, expect, it} from "vitest";
 import {AccountNumber} from "./AccountNumber";
-import {AccountNumberParser} from "./AccountNumberParser";
+import {Entry} from "./Entry";
 
-describe("AccountNumberParser", () => {
-    describe("with valid entry", () => {
+describe("Entry", () => {
+    describe("with valid lines", () => {
         [{
             entryLines: [
                 '    _  _     _  _  _  _  _ ',
@@ -22,13 +22,13 @@ describe("AccountNumberParser", () => {
             expectedAccountNumber: "723456789"
         }].forEach(testcase => {
             it(`should parse ${testcase.expectedAccountNumber}`, () => {
-                expect(AccountNumberParser.toAccountNumber(testcase.entryLines))
+                expect(Entry.of(testcase.entryLines).toAccountNumber())
                     .toStrictEqual(AccountNumber.of(testcase.expectedAccountNumber));
             });
         })
     });
 
-    describe("with entry of invalid lines count", () => {
+    describe("with invalid lines count", () => {
         [{
             entryLines: [
                 '    _  _     _  _  _  _  _ ',
@@ -53,13 +53,13 @@ describe("AccountNumberParser", () => {
             expectedError: "Invalid lines count, expected: 4, received: 5"
         }].forEach(testcase => {
             it(`should not parse an entry of ${testcase.entryLines.length} lines`, () => {
-                expect(() => AccountNumberParser.toAccountNumber(testcase.entryLines))
+                expect(() => Entry.of(testcase.entryLines).toAccountNumber())
                     .toThrowError(testcase.expectedError);
             });
         })
     });
 
-    describe("with entry of invalid lines length", () => {
+    describe("with invalid lines length", () => {
         [{
             entryLines: [
                 '    _  _     _  _  _  _  _',
@@ -98,7 +98,7 @@ describe("AccountNumberParser", () => {
             incorrectLength: 28
         }].forEach(testcase => {
             it(`should not parse an entry that have a line of length: ${testcase.incorrectLength}`, () => {
-                expect(() => AccountNumberParser.toAccountNumber(testcase.entryLines))
+                expect(() => Entry.of(testcase.entryLines).toAccountNumber())
                     .toThrowError(testcase.expectedError);
             });
         });
@@ -121,7 +121,7 @@ describe("AccountNumberParser", () => {
             expectedError: "Fourth line of the entry must be an empty line, found: '-'",
         }].forEach(testcase => {
             it(`should not parse an entry that have an invalid last line: '${testcase.entryLines.at(3)}'`, () => {
-                expect(() => AccountNumberParser.toAccountNumber(testcase.entryLines))
+                expect(() => Entry.of(testcase.entryLines).toAccountNumber())
                     .toThrowError(testcase.expectedError);
             });
         })

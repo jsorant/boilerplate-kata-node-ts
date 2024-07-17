@@ -1,11 +1,11 @@
 import {open} from "node:fs/promises";
-import {AccountNumberParser} from "./AccountNumberParser";
+import {Entry} from "./Entry";
 
 export class AccountNumbersFileParser {
     static async parse(filePath: string) {
         const lines = await this.readLinesOf(filePath);
         const entries = this.extractEntriesFrom(lines);
-        return entries.map(entry => AccountNumberParser.toAccountNumber(entry));
+        return entries.map(entry => Entry.of(entry).toAccountNumber());
     }
 
     //TODO class Entry
