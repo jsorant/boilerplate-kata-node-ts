@@ -73,9 +73,16 @@ const conversions = new Map<string, string>([
     [ZERO_STRING, "0"],
 ])
 
-export class DigitParser {
-    static toNumber(input: string[]): string {
-        const stringDigit = input.join(LINE_JOINER);
+export class Digit {
+    private constructor(private readonly lines: string[]) {
+    }
+
+    static of(lines: string[]): Digit {
+        return new Digit(lines);
+    }
+
+    toNumber(): string {
+        const stringDigit = this.lines.join(LINE_JOINER);
         const conversion = conversions.get(stringDigit);
         if (conversion === undefined) {
             throw new Error(`input is not a number:\n${stringDigit}`);

@@ -1,7 +1,7 @@
 import {describe, expect, it} from "vitest";
-import {DigitParser} from "./DigitParser";
+import {Digit} from "./Digit";
 
-describe("DigitParser", () => {
+describe("Digit", () => {
     const ONE_STRING = [
         '   ',
         '  |',
@@ -75,7 +75,7 @@ describe("DigitParser", () => {
         {input: ZERO_STRING, expected: "0"},
     ].forEach(testcase => {
         it(`should parse ${testcase.expected}`, () => {
-            expect(DigitParser.toNumber(testcase.input)).toBe(testcase.expected);
+            expect(Digit.of(testcase.input).toNumber()).toBe(testcase.expected);
         });
     })
 
@@ -86,7 +86,7 @@ describe("DigitParser", () => {
             ' _|',
         ];
 
-        expect(() => DigitParser.toNumber(input))
+        expect(() => Digit.of(input).toNumber())
             .toThrowError(`input is not a number:\n${input.join("\n")}`);
     });
 });

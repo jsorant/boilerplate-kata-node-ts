@@ -1,5 +1,5 @@
 import {AccountNumber} from "./AccountNumber";
-import {DigitParser} from "./DigitParser";
+import {Digit} from "./Digit";
 
 const LINES_COUNT = 4;
 const LINES_LENGTH = 27;
@@ -21,7 +21,7 @@ export class Entry {
         let accountNumberValue = "";
         for (let digitIndex = 0; digitIndex < DIGITS_COUNT; digitIndex++) {
             const digitsLines = this.digitsLines().map(l => l.slice(digitIndex * DIGIT_WIDTH, (digitIndex + 1) * DIGIT_WIDTH));
-            accountNumberValue += DigitParser.toNumber(digitsLines)
+            accountNumberValue += Digit.of(digitsLines).toNumber();
         }
 
         return AccountNumber.of(accountNumberValue);
