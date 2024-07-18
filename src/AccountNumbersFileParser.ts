@@ -1,10 +1,23 @@
 import {open} from "node:fs/promises";
 import {Entry} from "./Entry";
+import {AccountNumber, AccountNumberState} from "./AccountNumber";
 
 export class AccountNumbersFileParser {
     static async parse(filePath: string) {
         const entries = await this.readEntriesOf(filePath);
-        return entries.map(entry => entry.toAccountNumber());
+        return entries
+            .map(entry => entry.toAccountNumber())
+            .map(this.toText);
+    }
+
+    private static toText(accountNumber: AccountNumber) {
+        const converters: Record<AccountNumberState, (accountNumber: AccountNumber) => string> = {
+            VALID: (accountNumber) => accountNumber.value,
+            WRONG_CHECKSUM: (accountNumber) => `${accountNumber.value} ERR`,
+            HAS_ILLEGIBLE_NUMBERS: (accountNumber) => `${accountNumber.value} ILL`
+        }
+
+        return converters[accountNumber.state](accountNumber);
     }
 
     private static async readEntriesOf(filePath: string) {

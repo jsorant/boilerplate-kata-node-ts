@@ -79,14 +79,13 @@ describe("Digit", () => {
         });
     })
 
-    it(`should throw on incorrect input`, () => {
+    it(`should replace illegible numbers with ?`, () => {
         const input = [
             ' _ ',
             '| |',
             ' _|',
         ];
 
-        expect(() => Digit.of(input).toNumber())
-            .toThrowError(`input is not a number:\n${input.join("\n")}`);
+        expect(Digit.of(input).toNumber()).toBe("?");
     });
 });

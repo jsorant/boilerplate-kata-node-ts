@@ -73,6 +73,8 @@ const conversions = new Map<string, string>([
     [ZERO_STRING, "0"],
 ])
 
+const ILLEGIBLE_NUMBER = "?";
+
 export class Digit {
     private constructor(private readonly lines: string[]) {
     }
@@ -85,7 +87,7 @@ export class Digit {
         const stringDigit = this.lines.join(LINE_JOINER);
         const conversion = conversions.get(stringDigit);
         if (conversion === undefined) {
-            throw new Error(`input is not a number:\n${stringDigit}`);
+            return ILLEGIBLE_NUMBER;
         }
         return conversion;
     }
