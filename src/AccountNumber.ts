@@ -1,17 +1,23 @@
 export enum AccountNumberState {
     VALID = 'VALID',
-    WRONG_CHECKSUM = 'WRONG_CHECKSUM'
+    WRONG_CHECKSUM = 'WRONG_CHECKSUM',
+    HAS_ILLEGIBLE_NUMBERS = 'HAS_ILLEGIBLE_NUMBERS',
 }
 
 export class AccountNumber {
     readonly state: AccountNumberState;
 
     private constructor(readonly value: string) {
-        this.state = this.isChecksumValid() ? AccountNumberState.VALID : AccountNumberState.WRONG_CHECKSUM;
+        this.state = this.computeState();
     }
 
     static of(value: string) {
         return new AccountNumber(value);
+    }
+
+    private computeState(): AccountNumberState {
+        if (this.value.includes("?")) return AccountNumberState.HAS_ILLEGIBLE_NUMBERS;
+        return this.isChecksumValid() ? AccountNumberState.VALID : AccountNumberState.WRONG_CHECKSUM;
     }
 
     private isChecksumValid() {
